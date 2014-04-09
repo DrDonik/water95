@@ -22,7 +22,7 @@ T = Tmin:dT:Tmax;
 p = vectorize2d(@pressure,rho, T);
 
 % find state of water
-f1 = @(rho, T) getSecondResult2d(@pressure,rho, T);
+f1 = @(rho, T) getSecondResult(@pressure,rho, T);
 x = vectorize2d(f1,rho, T);
 idxW = find(x~=0);
 idxH = find(x~=1);
