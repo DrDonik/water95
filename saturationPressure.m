@@ -27,10 +27,25 @@ if T > Tc
 end
 
 if T*(1+eps) < Tt
-  pS = NaN;
-  rhop = NaN;
-  rhopp = NaN;
-  return;
+%  pS = NaN;
+%  rhop = NaN;
+%  rhopp = NaN;
+%  For @inclusion, we need to extend into the metastable region and NOT stop
+%  here. For now, we use the IAP version 
+%  Coefficients in the equation for the pressure on the liquid-vapor
+%  equilibrium curve
+    a1 = -7.85951783;
+    a2 = 1.84408259;
+    a3 = -11.7866497;
+    a4 = 22.6807411;
+    a5 = -15.9618719;
+    a6 = 1.80122502;
+
+    pc = 22.064 * 10^6; %Pressure in Pa at the critical point of water
+    x = 1 - 1/tau;
+
+    pS = pc * exp(tau*(a1*x + a2*x.^1.5 + a3*x.^3 + a4*x.^3.5 + a5*x.^4 + a6*x.^7.5));
+    return
 end
 
 % get start values from auxiliary model
