@@ -25,7 +25,7 @@ function inverse_isocomp_comp = inverse_isocomp(rho_array, T)
     %Calculate the isothermal compressibility...
 
     R = 461.51805;
-    Tc = 647.096;
+    Tc = 647.096; 
     rhoc = 322;
     tau = Tc/T;
 
