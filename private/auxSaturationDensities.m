@@ -1,4 +1,4 @@
-function [rhop rhopp] = auxSaturationDensities(T)
+function [rhop, rhopp] = auxSaturationDensities(T)
 % computes approximate values of the saturation densities
 % (rhop of water, rhopp of steam) according to [1, p.398f]
 % returns [0 0] for T > Tc

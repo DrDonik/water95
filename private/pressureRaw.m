@@ -11,8 +11,8 @@ function p = pressureRaw(rho, T)
 
 global IAPWS95_COEFFS;
 if isempty(IAPWS95_COEFFS)
-   IAPWS95_COEFFS = readIAPWS95data();
-end 
+    IAPWS95_COEFFS = readIAPWS95data();
+end
 
 % unpack coefficients
 [R,Tc,rhoc] = IAPWS95_COEFFS{1:3};
@@ -29,5 +29,5 @@ tau = Tc/T;
 if (abs(rho - rhoc) < epsi) && (abs(T - Tc) < epsi)
     p = pc;
 else
-  p = R*T*rho*(1 + delta*phir_d(delta,tau,IAPWS95_COEFFS));
+    p = R*T*rho*(1 + delta*phir_d(delta,tau,IAPWS95_COEFFS));
 end
