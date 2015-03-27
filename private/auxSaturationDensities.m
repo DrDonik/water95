@@ -11,10 +11,10 @@ if T > Tc*margin
   rhop = 0;
   rhopp = 0;
   return;
-elseif T < Tt/margin
-  rhop = -1;
-  rhopp = 0;
-  return;
+%elseif T < Tt/margin
+%  rhop = -1;
+%  rhopp = 0;
+%  return;
 end
 
 rhoc = 322;
