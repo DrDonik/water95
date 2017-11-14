@@ -1,6 +1,6 @@
 function [p, x] = pressure(rho, T)
 % returns pressure and dryness fraction as functions of rho and T
-% simply returns 0 for T < 0Â°C !!
+% simply returns 0 for T < 0°C !!
 % parameters:
 %   rho      density
 %   T        temperature

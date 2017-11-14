@@ -5,14 +5,14 @@ function [p, rho] = spinodal (T)
     T_ctr = 0;
     rho = zeros(size(T));
     p = zeros(size(T));
-    for T_walking = T;
+    for T_walking = T
         T_ctr=T_ctr+1;
         inverse_isothermal_comp = inverse_isocomp(densities,T_walking);
         for ctr = 1:size(densities,2)-1
             if inverse_isothermal_comp(ctr) < 0 && inverse_isothermal_comp(ctr+1) > 0
                 break;
-            end;
-        end;
+            end
+        end
         rho (T_ctr) = densities(ctr);
         p (T_ctr) = pressureRaw(rho (T_ctr),T_walking)/1e5; %Convert from Pa to bar
     end
@@ -38,6 +38,6 @@ function inverse_isocomp_comp = inverse_isocomp(rho_array, T)
         delta = rho/rhoc;
         inverse_isocomp_comp(ctr) = rho * ((2/rho*pressureRaw(rho,T) + rho^2*(R*T/rhoc^2*(phi0_dd(delta,tau) + phir_dd(delta,tau, coeffs)))));
 
-    end;
+    end
     return
 end
