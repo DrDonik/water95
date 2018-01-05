@@ -14,9 +14,9 @@ end
 % unpack coefficients
 [R,Tc,rhoc] = IAPWS95_COEFFS{1:3};
 
-dp_dtau = -pressureRaw(rho, T)/tau*delta*phir_dt(delta, tau, coeffs);
+% dp_dtau = @(rho,T) -pressureRaw(rho, T)/(Tc/T)*(rho/rhoc)*phir_dt((rho/rhoc), (Tc/T), coeffs);
+dp_dtau = @(rho,T) pressureRaw(rho, T)*T - R*T*rho*(1 + (rho/rhoc)*phir_dt((rho/rhoc), (Tc/T), coeffs)*T^2/Tc);
 
+[rho, p] = fzero(dp_dtau, [0, 0]);
 
-func = @(x) directPressureRaw(x, T);
-[rho, p] = fminsearch(func, 0);
 end
