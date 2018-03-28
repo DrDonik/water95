@@ -26,14 +26,18 @@ if T > Tc
     return;
 end
 
-% The saturation curve extends into the metastable region, so don't brake
-% here.
-%if T*(1+eps) < Tt
-%  pS = NaN;
-%  rhop = NaN;
-%  rhopp = NaN;
-%  return;
-%end
+% This function assumes that there is no metastable liquid state, so it
+% consequently would not return a useful value below the triple point.
+% However, for the use in fluid inclusions, metastable liquid states do
+% exist, and this function has thus been changed to still return a value for
+% those states. However, if called from a "traditional" script, return NaN.
+caller = dbstack();
+if T*(1+eps) < Tt && length(caller) > 2 && caller(3).name == "plotPhaseDiagram"
+    pS = NaN;
+    rhop = NaN;
+    rhopp = NaN;
+    return;
+end
 
 % get start values from auxiliary model
 pS = auxSaturationPressure(T);
